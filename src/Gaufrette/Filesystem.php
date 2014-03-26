@@ -127,7 +127,7 @@ class Filesystem
      */
     public function read($key)
     {
-        //$this->assertHasFile($key);
+        $this->assertHasFile($key);
 
         $content = $this->adapter->read($key);
 
@@ -232,6 +232,24 @@ class Filesystem
         }
 
         return Util\Checksum::fromContent($this->read($key));
+    }
+
+    /**
+     * Returns the size of the specified file's content
+     *
+     * @param string $key
+     *
+     * @return integer File size in Bytes
+     */
+    public function size($key)
+    {
+        $this->assertHasFile($key);
+
+        if ($this->adapter instanceof Adapter\SizeCalculator) {
+            return $this->adapter->size($key);
+        }
+
+        return Util\Size::fromContent($this->read($key));
     }
 
     /**

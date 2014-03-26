@@ -9,22 +9,34 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php.dist"
 >
-  <testsuites>
-    <testsuite name="KnpGaufretteBundle Test Suite">
-      <directory>./Tests</directory>
-    </testsuite>
-  </testsuites>
 
-  <filter>
-    <whitelist>
-      <directory suffix=".php">.</directory>
-      <exclude>
-        <directory>./Resources</directory>
-        <directory>./Tests</directory>
-        <directory>./vendor</directory>
-      </exclude>
-    </whitelist>
-  </filter>
+    <php>
+        <!-- Configuration for the GridFS adapter
+        <server name="MONGO_SERVER" value="localhost:27017" />
+        <server name="MONGO_DATABASE" value="gaufrette" />
+        -->
+        <!-- Configuration for the FTP adapter
+        <server name="FTP_DIRECTORY" value="/" />
+        <server name="FTP_HOST" value="localhost" />
+        <server name="FTP_USERNAME" value="john" />
+        <server name="FTP_PASSWORD" value="johnpass" />
+        <server name="FTP_MODE" value="1" />
+        <server name="FTP_PASSIVE" value="0" />
+        <server name="FTP_PORT" value="21" />
+        <server name="FTP_CREATE" value="0" />
+        -->
+    </php>
+
+    <testsuites>
+        <testsuite name="Gaufrette Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>./src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
