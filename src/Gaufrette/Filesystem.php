@@ -127,7 +127,8 @@ class Filesystem
      */
     public function read($key)
     {
-        $this->assertHasFile($key);
+        // @gointegro Eliminamos peticiones extra por performance.
+        // $this->assertHasFile($key);
 
         $content = $this->adapter->read($key);
 

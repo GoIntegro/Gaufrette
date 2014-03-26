@@ -98,7 +98,8 @@ class AmazonS3 implements Adapter,
      */
     public function read($key)
     {
-        $this->ensureBucketExists();
+        // @gointegro Eliminamos peticiones extra por performance.
+        // $this->ensureBucketExists();
 
         $response = $this->service->get_object(
             $this->bucket,
